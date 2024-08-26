@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkmate</title>
+    <link rel="stylesheet" href="./styles/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="flex justify-between items-center w-[%92] mx-auto">
+        <div>
+          <img class="w-16" src="./images/logo.png" alt="Logo" />
+        </div>
+        <div
+          class="md:static nav-link absolute min-h-[60vh] md:min-h-fit left-0 top-[-100%] md:w-auto w-full flex md:items-center px-5"
+        >
+          <ul class="flex md:flex-row flex-col items-center md:gap-[4vw] gap-8">
+            <li><a class="hover:text-gray-500" href="#">Home</a></li>
+            <li><a class="hover:text-gray-500" href="#">About Us</a></li>
+            <li><a class="hover:text-gray-500" href="#">Contact US</a></li>
+          </ul>
+        </div>
+        <div class="flex item-center gap-6">
+          <button>Login in</button>
+          <button>Sign Up</button>
+          <ion-icon
+            onclick="ToggleMenu(this)"
+            name="menu"
+            class="text-3xl cursor-pointer md:hidden"
+          ></ion-icon>
+        </div>
+      </nav>
+    </header>
+    <div class="main-video">
+      <video autoplay loop>
+        <source src="./images/main_4.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
