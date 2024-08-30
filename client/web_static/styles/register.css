@@ -21,7 +21,7 @@ body {
 #form {
   display: flex;
   flex-direction: column;
-  margin-top: 10%;
+  margin-top: 7%;
   width: 40%;
   padding: 0 7%;
   gap: 15px;
@@ -29,6 +29,27 @@ body {
 
 h1 {
   font-size: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header > img {
+  width: 3rem;
+}
+
+.logo_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_text > p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #7569ff;
 }
 
 .input-place {

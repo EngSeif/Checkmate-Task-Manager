@@ -1,9 +1,10 @@
 body {
   margin: 0;
-  height: 100vh;
+  padding: 0;
+  width: 100%;
 }
 
-.main-video {
+.animation {
     height: 90%;
     overflow: hidden;
 }
