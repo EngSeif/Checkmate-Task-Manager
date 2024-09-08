@@ -12,7 +12,7 @@ const addTask = async (req, res) => {
             `INSERT INTO tasks (title, description, priority, user_id) VALUES ($1, $2, $3, $4) RETURNING *`,
             [title, description, priority, userId]
         );
-
+        console.log({addedTask: newTask.rows[0]})
         res.status(201).json({ task: newTask.rows[0] });
     } catch (err) {
         console.error(err.message);
