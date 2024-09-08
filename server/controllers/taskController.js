@@ -2,7 +2,7 @@ const { client } = require('../config/db');
 require('dotenv').config();
 
 
-
+// Creating new task for the user
 const addTask = async (req, res) => {
     const { title, description, priority } = req.body;
     const userId = req.user.id; // Assuming req.user contains the authenticated user's ID
@@ -20,5 +20,21 @@ const addTask = async (req, res) => {
     }
 };
 
+// Getting all user tasks
+const getTasks = async (req, res) => {
+    const userId = req.user.id;
 
-module.exports = { addTask };
+    try {
+        const tasks = await client.query(
+            `SELECT * FROM tasks WHERE user_id = $1 ORDER BY time_added DESC`,
+            [userId]
+        );
+        res.json(tasks.rows);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+
+module.exports = { addTask, getTasks };

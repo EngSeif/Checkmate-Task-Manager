@@ -2,7 +2,7 @@ const express = require('express');
 const { client, connectDB, closeDB } = require('./config/db');
 const bcrypt = require('bcrypt');
 const { registerUser, loginUser } = require('./controllers/userController');
-const { addTask } = require('./controllers/taskController');
+const { addTask, getTasks } = require('./controllers/taskController');
 const authenticateToken = require('./middlewares/authenticateToken'); // Middleware to protect routes
 
 require('dotenv').config();
@@ -25,14 +25,20 @@ app.post('/register', registerUser);
 app.post('/login', loginUser);
 
 // Task routes
+app.get('/tasks', authenticateToken, getTasks)
 app.post('/tasks', authenticateToken, addTask);
+
+
+
+
+
 
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
     console.log("Server is running on port", PORT);
 });
-// Optionally, handle graceful shutdown by closing the database connection
+// handle closing the database connection
 process.on('SIGINT', async () => {
     await closeDB();
     process.exit(0);
