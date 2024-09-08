@@ -1,7 +1,7 @@
 const express = require('express');
 const { client, connectDB, closeDB } = require('./config/db');
 const bcrypt = require('bcrypt');
-const { registerUser } = require('./controllers/userController');
+const { registerUser, loginUser } = require('./controllers/userController');
 require('dotenv').config();
 
 
@@ -17,9 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-// User Routes
+// User registeration and login Routes
 app.post('/register', registerUser);
-
+app.post('/login', loginUser);
 
 
 
