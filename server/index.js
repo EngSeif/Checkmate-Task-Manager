@@ -2,6 +2,9 @@ const express = require('express');
 const { client, connectDB, closeDB } = require('./config/db');
 const bcrypt = require('bcrypt');
 const { registerUser, loginUser } = require('./controllers/userController');
+const { addTask } = require('./controllers/taskController');
+const authenticateToken = require('./middlewares/authenticateToken'); // Middleware to protect routes
+
 require('dotenv').config();
 
 
@@ -21,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.post('/register', registerUser);
 app.post('/login', loginUser);
 
+// Task routes
+app.post('/tasks', authenticateToken, addTask);
 
 
 // Start the server and listen on the specified port
