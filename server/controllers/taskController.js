@@ -107,4 +107,27 @@ const deleteTask = async (req, res) => {
     }
 };
 
-module.exports = { addTask, getTasks, updateTask, deleteTask };
+// Get filtered tasks by priority query
+const getTasksByPriority = async (req, res) => {
+    const userId = req.user.id; 
+    const { priority } = req.query; 
+
+    try {
+        const result = await client.query(
+            'SELECT * FROM tasks WHERE user_id = $1 AND priority = $2 ORDER BY time_added DESC',
+            [userId, priority]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ msg: 'No tasks found with the specified priority' });
+        }
+
+        res.status(200).json({ tasks: result.rows });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+
+module.exports = { addTask, getTasks, updateTask, deleteTask, getTasksByPriority};
