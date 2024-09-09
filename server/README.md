@@ -32,6 +32,21 @@ Welcome to the To-Do List API project! This API allows users to manage their dai
 - **Bcrypt**: A password-hashing function used to secure user passwords before storing them in the database.
 - **Postman**: A powerful tool for testing and documenting the API endpoints.
 
+## API Endpoints Overview
+
+### Authentication Routes
+
+- **POST /register** - Register a new user
+- **POST /login** - Authenticate a user and return a JWT token
+
+### Task Routes (Protected by JWT)
+
+- **GET /tasks** - Retrieve all tasks for the authenticated user
+- **POST /tasks** - Create a new task
+- **PATCH /tasks/:id** - Update an existing task
+- **DELETE /tasks/:id** - Delete a task
+- **GET /tasks/filter?priority={high|medium|low}** - Filter tasks by priority
+- **GET /tasks/status?checked={true|false}** - Filter tasks by checked status
 
 ## 📄 API Documentation
 
