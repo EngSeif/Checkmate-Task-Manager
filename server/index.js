@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Routes
-app.use('/users', userRoutes); // User routes
+app.use('/user', userRoutes); // User routes
 app.use('/tasks', taskRoutes); // Task routes
 
 
