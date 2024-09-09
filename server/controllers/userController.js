@@ -31,14 +31,14 @@ const loginUser = async (req, res) => {
         const user = await client.query('SELECT * FROM users WHERE email = $1', [email]);
 
         if (user.rows.length === 0) {
-            return res.status(400).json({ error: 'Invalid credentials' });
+            return res.status(400).json({ error: 'Email Not Found' });
         }
 
         // Check the password
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
 
         if (!validPassword) {
-            return res.status(400).json({ error: 'Invalid credentials' });
+            return res.status(400).json({ error: 'Wrong Password' });
         }
 
         // Generate JWT token

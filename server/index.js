@@ -25,9 +25,9 @@ app.post('/register', registerUser);
 app.post('/login', loginUser);
 
 // Task routes
-app.get('/tasks', authenticateToken, getTasks)
-app.post('/tasks', authenticateToken, addTask);
-
+app.get('/tasks', authenticateToken, getTasks) // Get all user tasks
+app.post('/tasks', authenticateToken, addTask); // Create new task
+app.patch('/tasks/:id', authenticateToken, updateTask); // New route for updating tasks
 
 
 
