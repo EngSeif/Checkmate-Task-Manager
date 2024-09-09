@@ -48,6 +48,12 @@ Welcome to the To-Do List API project! This API allows users to manage their dai
 - **GET /tasks/filter?priority={high|medium|low}** - Filter tasks by priority
 - **GET /tasks/status?checked={true|false}** - Filter tasks by checked status
 
+
+## Testing the API
+You can test the API using Postman. Import the Postman collection or use the following link to view the API documentation:
+
+
+
 ## 📄 API Documentation
 
 For a detailed overview of the API endpoints and how to use them, please refer to the full documentation:
