@@ -2,7 +2,7 @@ const express = require('express');
 const { client, connectDB, closeDB } = require('./config/db');
 const bcrypt = require('bcrypt');
 const { registerUser, loginUser } = require('./controllers/userController');
-const { addTask, getTasks } = require('./controllers/taskController');
+const { addTask, getTasks, updateTask } = require('./controllers/taskController');
 const authenticateToken = require('./middlewares/authenticateToken'); // Middleware to protect routes
 
 require('dotenv').config();
