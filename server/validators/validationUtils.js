@@ -1,12 +1,20 @@
-const taskSchema = require('./taskValidator'); 
+const {taskAddSchema, taskUpdateSchema} = require('./taskValidator'); 
 
 // Validation function
-const validateTask = (data) => {
-    const { error } = taskSchema.validate(data);
+const validateAddedTask = (data) => {
+    const { error } = taskAddSchema.validate(data);
     if (error) {
         return { isValid: false, message: error.details[0].message };
     }
     return { isValid: true };
 };
 
-module.exports = { validateTask };
+const validateUpdatedTask = (data) => {
+    const { error } = taskUpdateSchema.validate(data);
+    if (error) {
+        return { isValid: false, message: error.details[0].message };
+    }
+    return { isValid: true };
+};
+
+module.exports = { validateAddedTask, validateUpdatedTask };
