@@ -3,7 +3,7 @@ const { client, connectDB, closeDB } = require('./config/db');
 const bcrypt = require('bcrypt');
 const { registerUser, loginUser } = require('./controllers/userController');
 const { addTask, getTasks, updateTask, deleteTask, getTasksByPriority, getTasksByStatus } = require('./controllers/taskController');
-const authenticateToken = require('./middlewares/authenticateToken'); // Middleware to protect routes
+const authenticateToken = require('./middlewares/authenticateToken'); 
 
 require('dotenv').config();
 

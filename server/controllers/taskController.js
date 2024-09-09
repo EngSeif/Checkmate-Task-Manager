@@ -1,5 +1,7 @@
 const { client } = require('../config/db');
+const { validateTask } = require('../validators/validationUtils'); 
 require('dotenv').config();
+
 
 
 // Getting all user tasks
@@ -22,8 +24,15 @@ const getTasks = async (req, res) => {
 
 // Create new task for the user
 const addTask = async (req, res) => {
-    const { title, description, priority } = req.body;
     const userId = req.user.id; 
+
+
+    // Validate the request body
+    const { isValid, message } = validateTask(req.body);
+    if (!isValid) return res.status(400).json({ msg: message });
+
+    const { title, description, priority } = req.body;
+
 
     try {
         const newTask = await client.query(
@@ -44,6 +53,12 @@ const addTask = async (req, res) => {
 const updateTask = async (req, res) => {
     const userId = req.user.id; 
     const { id } = req.params; 
+
+    // Validate the request body
+    const { isValid, message } = validateTask(req.body);
+    if (!isValid) return res.status(400).json({ msg: message });
+    
+
     const {description, checked, priority } = req.body; 
     const title = req.body.title || null
 
