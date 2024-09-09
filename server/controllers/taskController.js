@@ -5,7 +5,7 @@ require('dotenv').config();
 // Getting all user tasks
 const getTasks = async (req, res) => {
     const userId = req.user.id;
-    console.log(req.user);
+    
     try {
         const tasks = await client.query(
             `SELECT * FROM tasks WHERE user_id = $1 ORDER BY time_added DESC`,
@@ -40,13 +40,13 @@ const addTask = async (req, res) => {
 
 
 
-// Updating task 
+// Updating task with id param
 const updateTask = async (req, res) => {
     const userId = req.user.id; 
     const { id } = req.params; 
     const {description, checked, priority } = req.body; 
     const title = req.body.title || null
-    console.log(title);
+
     try {
         let result;
         if (title === null) {
@@ -71,7 +71,7 @@ const updateTask = async (req, res) => {
         }
         // If no task was updated, return a 404 response
         if (result.rows.length === 0) {
-            return res.status(404).json({ msg: 'Task not found or not authorized' });
+            return res.status(404).json({ msg: 'Task not found' });
         }
 
         res.status(200).json({ task: result.rows[0] });
@@ -81,4 +81,30 @@ const updateTask = async (req, res) => {
     }
 };
 
-module.exports = { addTask, getTasks, updateTask };
+// Delete task with id param
+const deleteTask = async (req, res) => {
+    const userId = req.user.id; 
+    const { id } = req.params; 
+
+    try {
+        // Delete the task from the database
+        const result = await client.query(
+            `DELETE FROM tasks
+             WHERE id = $1 AND user_id = $2
+             RETURNING *`,
+            [id, userId]
+        );
+
+        // If no task was deleted, return a 404 response
+        if (result.rows.length === 0) {
+            return res.status(404).json({ msg: 'Task not found' });
+        }
+
+        res.status(200).json({ msg: 'Task deleted successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+module.exports = { addTask, getTasks, updateTask, deleteTask };

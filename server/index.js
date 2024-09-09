@@ -2,7 +2,7 @@ const express = require('express');
 const { client, connectDB, closeDB } = require('./config/db');
 const bcrypt = require('bcrypt');
 const { registerUser, loginUser } = require('./controllers/userController');
-const { addTask, getTasks, updateTask } = require('./controllers/taskController');
+const { addTask, getTasks, updateTask, deleteTask } = require('./controllers/taskController');
 const authenticateToken = require('./middlewares/authenticateToken'); // Middleware to protect routes
 
 require('dotenv').config();
@@ -28,6 +28,7 @@ app.post('/login', loginUser);
 app.get('/tasks', authenticateToken, getTasks) // Get all user tasks
 app.post('/tasks', authenticateToken, addTask); // Create new task
 app.patch('/tasks/:id', authenticateToken, updateTask); // New route for updating tasks
+app.delete('/tasks/:id', authenticateToken, deleteTask); // Deleting task
 
 
 
