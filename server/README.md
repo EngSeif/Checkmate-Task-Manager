@@ -2,6 +2,7 @@
 
 Welcome to the To-Do List API project! This API allows users to manage their daily tasks efficiently, with features that cater to the everyday needs of a task management application.
 
+- **URL**: https://checkmate-api-y0e5.onrender.com/
 ## 🚀 Features
 
 - **User Authentication**:
@@ -33,13 +34,14 @@ Welcome to the To-Do List API project! This API allows users to manage their dai
 - **Postman**: A powerful tool for testing and documenting the API endpoints.
 
 ## API Endpoints Overview
-
+- **Index ('/')**: Redircet to api documentaion link
 ### Authentication Routes
 
 - **POST /register** - Register a new user
 - **POST /login** - Authenticate a user and return a JWT token
 
 ### Task Routes (Protected by JWT)
+
 
 - **GET /tasks** - Retrieve all tasks for the authenticated user
 - **POST /tasks** - Create a new task
