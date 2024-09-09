@@ -1,4 +1,4 @@
-const taskSchema = require('./taskValidator'); // Import the Joi schema
+const taskSchema = require('./taskValidator'); 
 
 // Validation function
 const validateTask = (data) => {

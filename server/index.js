@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const { registerUser, loginUser } = require('./controllers/userController');
 const { addTask, getTasks, updateTask, deleteTask, getTasksByPriority, getTasksByStatus } = require('./controllers/taskController');
 const authenticateToken = require('./middlewares/authenticateToken'); 
+const errorHandler = require('./middlewares/errorHandler'); // Import error handler
 
 require('dotenv').config();
 
@@ -35,7 +36,8 @@ app.delete('/tasks/:id', authenticateToken, deleteTask); // Deleting task
 
 
 
-
+// Generic error hndler for uncought error
+app.use(errorHandler)
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
