@@ -129,5 +129,26 @@ const getTasksByPriority = async (req, res) => {
     }
 };
 
+const getTasksByStatus = async (req, res) => {
+    const userId = req.user.id; 
+    const { checked } = req.query; 
 
-module.exports = { addTask, getTasks, updateTask, deleteTask, getTasksByPriority};
+    try {
+        const result = await client.query(
+            'SELECT * FROM tasks WHERE user_id = $1 AND checked = $2 ORDER BY time_added DESC',
+            [userId, checked]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ msg: 'No tasks found with the specified status' });
+        }
+
+        res.status(200).json({ tasks: result.rows });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+
+module.exports = { addTask, getTasks, updateTask, deleteTask, getTasksByPriority, getTasksByStatus };
