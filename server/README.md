@@ -2,7 +2,7 @@
 
 Welcome to the To-Do List API project! This API allows users to manage their daily tasks efficiently, with features that cater to the everyday needs of a task management application.
 
-- **URL**: https://checkmate-api-y0e5.onrender.com/
+- **URL**: https://checkmate-api.vercel.app/
 ## 🚀 Features
 
 - **User Authentication**:
@@ -34,7 +34,6 @@ Welcome to the To-Do List API project! This API allows users to manage their dai
 - **Postman**: A powerful tool for testing and documenting the API endpoints.
 
 ## API Endpoints Overview
-- **Index ('/')**: Redircet to api documentaion link
 ### Authentication Routes
 
 - **POST /register** - Register a new user

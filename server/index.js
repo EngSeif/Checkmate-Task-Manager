@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (req, res) => {
-res.redirect('https://documenter.getpostman.com/view/37432599/2sAXjSy8fC')
+    res.json({message: "Hello from the backend."})
 })
 app.use('/user', userRoutes); // User routes
 app.use('/tasks', taskRoutes); // Task routes
