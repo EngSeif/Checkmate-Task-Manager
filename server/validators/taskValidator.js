@@ -4,7 +4,7 @@ const Joi = require('joi');
 const taskAddSchema = Joi.object({
     title: Joi.string().min(1).required(),
     description: Joi.string().optional(),
-    priority: Joi.string().valid('high', 'medium', 'low').required(),
+    priority: Joi.string().valid('high', 'medium', 'low').optional(),
     checked: Joi.boolean().required()
 });
 const taskUpdateSchema = Joi.object({
