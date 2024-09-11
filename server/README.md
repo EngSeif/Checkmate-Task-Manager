@@ -1,6 +1,6 @@
-# 📝 To-Do List API
+# 📝 Checkmate API
 
-Welcome to the To-Do List API project! This API allows users to manage their daily tasks efficiently, with features that cater to the everyday needs of a task management application.
+Welcome to the Task-Manager API project! This API allows users to manage their daily tasks efficiently, with features that cater to the everyday needs of a task management application.
 
 - **URL**: https://checkmate-api.vercel.app/
 ## 🚀 Features
