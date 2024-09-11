@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "42e346c3-0060-44f8-8266-b72b52bf3e48",
+		"name": "Checkmate-api",
+		"description": "This Postman collection contains all the endpoints necessary for managing users and tasks in a to-do list application. The collection is divided into two main folders: **Authentication** and **Tasks**. Each folder contains endpoints that allow users to register, log in, create, retrieve, update, delete, and filter tasks.\n\n### **Collection Overview:**\n\n- **Authentication**: Endpoints related to user management, including registration and login. These endpoints are crucial for securing access to the application’s task management features.\n    \n- **Tasks**: Endpoints that allow users to manage their to-do list, including creating, retrieving, updating, and deleting tasks. Users can also filter tasks based on priority and completion status.\n    \n\n### **Authentication Process:**\n\n1. **Register**: Users must first create an account using the `/register` endpoint.\n    \n2. **Login**: Once registered, users log in using the `/login` endpoint to receive a JWT token.\n    \n3. **Token Usage**: The JWT token is required for all subsequent requests to the task management endpoints. The token should be included in the `Authorization` header of each request.\n    \n\n### **Task Management Process:**\n\n1. **Add Task**: Create a new task using the `/tasks` POST endpoint.\n    \n2. **View Tasks**: Retrieve all tasks or filter them by priority or status using the GET endpoints.\n    \n3. **Update Task**: Modify an existing task using the `/tasks/:id` PATCH endpoint.\n    \n4. **Delete Task**: Remove a task using the `/tasks/:id` DELETE endpoint.\n    \n\n### **Error Handling**:\n\n- Proper error handling is implemented across all endpoints to ensure meaningful feedback is provided in case of invalid requests, authentication failures, or server errors.\n    \n\n### **Security**:\n\n- **JWT Authentication**: All task-related operations require a valid JWT token, ensuring that only authenticated users can manage tasks.\n    \n- **Password Security**: User passwords are securely hashed and stored, and should not be exposed in any responses or logs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37432599"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "ahmedhenawy15",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ahmedalimohamed@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456xx",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://checkmate-api.vercel.app/user/register",
+							"protocol": "https",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						},
+						"description": "- **Method**: POST\n    \n- **Description**: Registers a new user by creating an account with a username and password. Upon successful registration, the user can log in to obtain a JWT token.\n    \n- **URL**: `/user/register`\n    \n- **Request Body**:\n    \n\njson:{ \"username\": \"exampleUser\", \"email\": \"[user@example.com](https://mailto:user@example.com)\", \"password\": \"SecurePassword123\"}\n\n- **Responses**:\n    \n    - **201 Created**: Confirms that the user account was successfully created.\n        \n    - **400 Bad Request**: If the request body is invalid, such as a missing required field or an already registered email.\n        \n    - **500 Internal Server Error**: If there is an issue with the server."
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ahmedalimohamed@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456xx",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://checkmate-api.vercel.app/user/login",
+							"protocol": "https",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "- **Method**: POST\n    \n- **Description**: Authenticates a user by verifying the username and password. If successful, it returns a JWT token that must be used in the `Authorization` header for all subsequent requests.\n    \n- **URL**: `/user/login`\n    \n- **Request Body**:\n    \n\njson{ \"email\": \"[user@example.com](https://mailto:user@example.com)\", \"password\": \"SecurePassword123\"}\n\n- **Responses**:\n    \n    - json{ \"token\": \"your-jwt-token-here\"}\n        \n    - **400 Bad Request**: If the request body is invalid or if the email/password is incorrect.\n        \n    - **401 Unauthorized**: If authentication fails due to incorrect credentials.\n        \n    - **500 Internal Server Error**: If there is an issue with the server."
+					},
+					"response": []
+				}
+			],
+			"description": "**contains endpoints related to user account management, specifically for registering new users and logging in to obtain authentication tokens. These tokens are essential for accessing protected resources within the to-do list application, such as task management.**\n\n### **Endpoints Included:**\n\n1. **User Registration**\n    \n    - **URL**: `/user/register`\n        \n    - **Method**: POST\n        \n    - **Description**: Registers a new user by creating an account with a unique username, email, and password. This endpoint allows users to sign up for the application.\n        \n2. **User Login**\n    \n    - **URL**: `/user/login`\n        \n    - **Method**: POST\n        \n    - **Description**: Authenticates an existing user by verifying their email and password. Upon successful authentication, the server returns a JWT token, which the user must include in the `Authorization` header of subsequent requests to access protected routes.\n        \n\n- **JWT Authentication**: The JWT token obtained from the login endpoint is required for accessing any protected resources, such as task creation, retrieval, update, and deletion.\n    \n\n**Usage Flow:**\n\n1. **Register**: New users must first register using the `/register` endpoint.\n    \n2. **Login**: Registered users can then log in using the `/login` endpoint to receive a JWT token.\n    \n3. **Access Protected Routes**: Use the obtained JWT token in the `Authorization` header of subsequent requests to access protected resources within the application."
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Get All Tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTcyNjAxMjA3MCwiZXhwIjoxNzI2MDk4NDcwfQ.HFORKOhY7TanKv8foogPwbuGx2oCug1uYyTDMvAAbPk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://checkmate-api.vercel.app/tasks",
+							"protocol": "https",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"tasks"
+							]
+						},
+						"description": "- **Method**: GET\n    \n- **Description**: Retrieves all tasks for the authenticated user.\n    \n- **URL**: `/tasks`\n    \n- **Authorization Required**: Yes (Bearer Token)\n    \n- **Responses**:\n    \n- **200 OK**: Returns a list of tasks.\n    \n- **401 Unauthorized**: If the JWT token is missing or invalid.\n    \n- **500 Internal Server Error**: If there is an issue with the server."
+					},
+					"response": []
+				},
+				{
+					"name": "Tasks By Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzI1ODIzODE2LCJleHAiOjE3MjU5MTAyMTZ9.wbzoz-qwlFtkycRIHROwr_mDOPQP7K845spkGp-MkpI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://checkmate-api.vercel.app/tasks/status?checked=false",
+							"protocol": "http",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"status"
+							],
+							"query": [
+								{
+									"key": "checked",
+									"value": "false"
+								}
+							]
+						},
+						"description": "- **Method**: GET\n    \n- **Description**: Retrieves tasks filtered by checked status.using the `checked` query parameter.\n    \n- **URL**: `/tasks?checked=true`\n    \n- **Authorization Required**: Yes (Bearer Token)\n    \n- **Query Parameters**:\n    \n    - `checked`: Filter tasks by checked status (e.g., `true`, `false`)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks By Priority",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzI1ODIzODE2LCJleHAiOjE3MjU5MTAyMTZ9.wbzoz-qwlFtkycRIHROwr_mDOPQP7K845spkGp-MkpI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://checkmate-api.vercel.app/tasks/filter?priority=low",
+							"protocol": "http",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "priority",
+									"value": "low"
+								}
+							]
+						},
+						"description": "- **Method**: GET\n    \n- **Description**: Retrieves tasks filtered by priority. the `priority` query parameter.\n    \n- **URL**: `/tasks?priority=high`\n    \n- **Authorization Required**: Yes (Bearer Token)\n    \n- **Query Parameters**:\n    \n    - `priority`: Filter tasks by priority (e.g., `high`, `medium`, `low`)."
+					},
+					"response": []
+				},
+				{
+					"name": "Add Task",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTcyNjAxMjA3MCwiZXhwIjoxNzI2MDk4NDcwfQ.HFORKOhY7TanKv8foogPwbuGx2oCug1uYyTDMvAAbPk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Building client2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "react js",
+									"type": "text"
+								},
+								{
+									"key": "checked",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "low",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://checkmate-api.vercel.app/tasks",
+							"protocol": "http",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"tasks"
+							]
+						},
+						"description": "- **Method**: POST\n    \n- **Description**: Creates a new task for the authenticated user.\n    \n- **URL**: `/tasks`\n    \n- **Authorization Required**: Yes (Bearer Token)\n    \n- **Request Body**:\n    \n\njson{ \"title\": \"Task Title\", \"description\": \"Task Description\", \"priority\": \"high\", // Options: high, medium, low \"checked\": false}\n\n- **Responses**:\n    \n    - **201 Created**: Returns the created task.\n        \n    - **400 Bad Request**: If the request body is invalid or missing required fields.\n        \n    - **401 Unauthorized**: If the JWT token is missing or invalid.\n        \n    - **500 Internal Server Error**: If there is an issue with the server."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTcyNjAxMjA3MCwiZXhwIjoxNzI2MDk4NDcwfQ.HFORKOhY7TanKv8foogPwbuGx2oCug1uYyTDMvAAbPk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "priority",
+									"value": "low",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "important",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Nodejs",
+									"type": "text"
+								},
+								{
+									"key": "checked",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://checkmate-api.vercel.app/tasks/15",
+							"protocol": "http",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"15"
+							]
+						},
+						"description": "- **Method**: PATCH\n    \n- **Description**: Updates a specific task identified by its ID.\n    \n- **URL**: `/tasks/:id`\n    \n- **Authorization Required**: Yes (Bearer Token)\n    \n- **Request Body**:\n    \n\njson{ \"title\": \"Updated Task Title\", \"description\": \"Updated Task Description\", \"priority\": \"medium\", // Options: high, medium, low \"checked\": true}\n\n- **Responses**:\n    \n    - **200 OK**: Returns the updated task.\n        \n    - **400 Bad Request**: If the request body is invalid or missing fields.\n        \n    - **401 Unauthorized**: If the JWT token is missing or invalid.\n        \n    - **404 Not Found**: If the task with the specified ID does not exist.\n        \n    - **500 Internal Server Error**: If there is an issue with the server."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTcyNjAxMjA3MCwiZXhwIjoxNzI2MDk4NDcwfQ.HFORKOhY7TanKv8foogPwbuGx2oCug1uYyTDMvAAbPk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://checkmate-api.vercel.app/tasks/15",
+							"protocol": "http",
+							"host": [
+								"checkmate-api",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"15"
+							]
+						},
+						"description": "- **Method**: DELETE\n    \n- **Description**: Deletes a specific task identified by its ID.\n    \n- **URL**: `/tasks/:id`\n    \n- **Authorization Required**: Yes (Bearer Token)\n    \n- **Responses**:\n    \n    - **204 No Content**: Indicates that the task was successfully deleted.\n        \n    - **401 Unauthorized**: If the JWT token is missing or invalid.\n        \n    - **404 Not Found**: If the task with the specified ID does not exist.\n        \n    - **500 Internal Server Error**: If there is an issue with the server."
+					},
+					"response": []
+				}
+			],
+			"description": "**contains endpoints related to task management within the to-do list application. These endpoints allow users to create, retrieve, update, and delete tasks, as well as filter tasks based on priority and status. All operations require authentication via JWT.**\n\n### **Endpoints Included:**\n\n1. **Get All Tasks**\n    \n    - **URL**: `/tasks`\n        \n    - **Method**: GET\n        \n    - **Description**: Retrieves a list of all tasks created by the authenticated user. The response includes task details such as title, description, priority, and completion status.\n        \n2. **Add New Task**\n    \n    - **URL**: `/tasks`\n        \n    - **Method**: POST\n        \n    - **Description**: Creates a new task for the authenticated user. The user can set the task title, description, priority level, and completion status.\n        \n3. **Update Task**\n    \n    - **URL**: `/tasks/:id`\n        \n    - **Method**: PATCH\n        \n    - **Description**: Updates the details of an existing task identified by its unique ID. The user can update the task title, description, priority, and completion status.\n        \n4. **Delete Task**\n    \n    - **URL**: `/tasks/:id`\n        \n    - **Method**: DELETE\n        \n    - **Description**: Deletes a specific task identified by its unique ID. This action is irreversible.\n        \n5. **Filter Tasks by Priority**\n    \n    - **URL**: `/tasks/filter`\n        \n    - **Method**: GET\n        \n    - **Description**: Retrieves tasks filtered by their priority level (`high`, `medium`, or `low`). The priority level is passed as a query parameter.\n        \n6. **Filter Tasks by Checked Status**\n    \n    - **URL**: `/tasks/status`\n        \n    - **Method**: GET\n        \n    - **Description**: Retrieves tasks filtered by their completion status (`true` for completed, `false` for not completed). The status is passed as a query parameter.\n        \n\n### **General Notes:**\n\n- **JWT Authentication**: All task-related operations require the user to be authenticated. The JWT token must be included in the `Authorization` header of the request.\n    \n- **Task Management**: The tasks folder is designed to handle all aspects of task management, including creation, retrieval, updating, deletion, and filtering.\n    \n- **Error Handling**: Each endpoint includes error handling to manage scenarios like invalid input, unauthorized access, and attempts to modify non-existent tasks.\n    \n\n### **Usage Flow:**\n\n1. **Create a Task**: Use the `/tasks` POST endpoint to add a new task to your list.\n    \n2. **View Tasks**: Retrieve all tasks using the `/tasks` GET endpoint or filter them by priority or status.\n    \n3. **Update a Task**: Modify an existing task by sending a PATCH request to `/tasks/:id`.\n    \n4. **Delete a Task**: Remove a task from your list using the `/tasks/:id` DELETE endpoint."
+		},
+		{
+			"name": "https://checkmate-api.vercel.app/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://checkmate-api.vercel.app/",
+					"protocol": "https",
+					"host": [
+						"checkmate-api",
+						"vercel",
+						"app"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
