@@ -36,8 +36,8 @@ Welcome to the To-Do List API project! This API allows users to manage their dai
 ## API Endpoints Overview
 ### Authentication Routes
 
-- **POST /register** - Register a new user
-- **POST /login** - Authenticate a user and return a JWT token
+- **POST /user/register** - Register a new user
+- **POST /user/login** - Authenticate a user and return a JWT token
 
 ### Task Routes (Protected by JWT)
 
