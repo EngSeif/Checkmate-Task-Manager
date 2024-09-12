@@ -2,7 +2,7 @@
 
 Welcome to the Task-Manager API project! This API allows users to manage their daily tasks efficiently, with features that cater to the everyday needs of a task management application.
 
-- **URL**: (http://54.164.1.113/)
+- **URL**: ((http://52.3.242.103/))
 ## 🚀 Features
 
 - **User Authentication**:
