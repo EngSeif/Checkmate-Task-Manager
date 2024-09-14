@@ -36,18 +36,19 @@ Welcome to the Task-Manager API project! This API allows users to manage their d
 ## API Endpoints Overview
 ### Authentication Routes
 
-- **POST /user/register** - Register a new user
-- **POST /user/login** - Authenticate a user and return a JWT token
+- **POST /user/register** - Register a new user.
+- **POST /user/login** - Authenticate a user and return a JWT token.
+- **POST /user/Data** - Retrieve authenticated user username & email.
 
 ### Task Routes (Protected by JWT)
 
 
-- **GET /tasks** - Retrieve all tasks for the authenticated user
-- **POST /tasks** - Create a new task
-- **PATCH /tasks/:id** - Update an existing task
-- **DELETE /tasks/:id** - Delete a task
-- **GET /tasks/filter?priority={high|medium|low}** - Filter tasks by priority
-- **GET /tasks/status?checked={true|false}** - Filter tasks by checked status
+- **GET /tasks** - Retrieve all tasks for the authenticated user.
+- **POST /tasks** - Create a new task.
+- **PATCH /tasks/:id** - Update an existing task.
+- **DELETE /tasks/:id** - Delete a task.
+- **GET /tasks/filter?priority={high|medium|low}** - Filter tasks by priority.
+- **GET /tasks/status?checked={true|false}** - Filter tasks by checked status.
 
 
 ## Testing the API
