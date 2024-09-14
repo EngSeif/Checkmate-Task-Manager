@@ -51,4 +51,17 @@ const loginUser = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser };
+const userData = async (req, res) => {
+    const userId = req.user.id;
+
+    try {
+        const user = await client.query(`SELECT username, email FROM users WHERE id = $1`,[userId]);
+        res.json(user.rows[0])
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
+
+
+module.exports = { registerUser, loginUser, userData };
