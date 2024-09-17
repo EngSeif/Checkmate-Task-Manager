@@ -1,1 +1,1 @@
-<h1>Checkmate To-do list App</h1>
+<h1>Checkmate Task-Manager App</h1>
