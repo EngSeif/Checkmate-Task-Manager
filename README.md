@@ -8,8 +8,8 @@ This project was developed as a collaborative effort between [Ahmed Henawy] and 
 
 - **Final Project Blog Article**: [Read the blog here](https://medium.com/@eng.seifmohamed2004/first-milestone-in-software-engineering-journey-7e5a1b0a0b7c)
 - **Authors**:
-  - [Seif Mohamed](https://www.linkedin.com/in/seif-mohamed-bb7b33252/)
-  - [Ahmed Henawy](https://www.linkedin.com/in/ahmedhenawy/)
+  - [Seif Mohamed](https://www.linkedin.com/in/seif-mohamed-bb7b33252/). Responible for building the frontend and UI components
+  - [Ahmed Henawy](https://www.linkedin.com/in/ahmedhenawy/). Responible for building the backend and DB mangment.
 
 ## Usage
 
