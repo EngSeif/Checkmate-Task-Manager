@@ -1,0 +1,3 @@
+.taskContainer {
+    @apply bg-[#9988ff] px-2 py-2 rounded-md my-2 text-white relative;
+  }
