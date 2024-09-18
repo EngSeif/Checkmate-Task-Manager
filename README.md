@@ -8,7 +8,7 @@ This project was developed as a collaborative effort between [Ahmed Henawy] and 
 
 - **Final Project Blog Article**: [Read the blog here](https://medium.com/@eng.seifmohamed2004/first-milestone-in-software-engineering-journey-7e5a1b0a0b7c)
 - **Authors**:
-  - [Your Name's LinkedIn](https://www.linkedin.com/in/seif-mohamed-bb7b33252/)
+  - [Seif Mohamed](https://www.linkedin.com/in/seif-mohamed-bb7b33252/)
   - [Ahmed Henawy](https://www.linkedin.com/in/ahmedhenawy/)
 
 ## Usage
