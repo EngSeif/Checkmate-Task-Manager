@@ -23,16 +23,15 @@ Checkmate Task Manager is designed to help you efficiently manage and prioritize
 
 3. **Dashboard**: After logging in, you’ll be taken to the main dashboard where you can manage all your tasks in one place.
    - **Task Management**: Add, edit, or delete tasks easily.
-     ![Task Management Dashboard](./assets/images/dashboard1.jpg)
+   - **Create and View Tasks**: Add new tasks with descriptions and track them in real-time on the dashboard.
+   - **Edit and Delete Tasks**: If you need to update a task or no longer need it, easily edit or delete it with one click.
    - **Task Priority**: View tasks separated by priority levels (e.g., high, medium, low) for better organization.
-     ![Task Priority View](./assets/images/dashboard2.jpg)
+   - ![Task Management Dashboard](./assets/images/dashboard1.jpg)
+   - ![Task Priority View](./assets/images/dashboard2.jpg)
 
 4. **Analytical Dashboard**: Track your task progress and get an overview of your productivity with visual analytics that show completed tasks, pending tasks, and more.
    ![Analytical Dashboard](./assets/images/analytical.jpg)
 
-5. **Create and View Tasks**: Add new tasks with descriptions and track them in real-time on the dashboard.
-
-6. **Edit and Delete Tasks**: If you need to update a task or no longer need it, easily edit or delete it with one click.
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
  
