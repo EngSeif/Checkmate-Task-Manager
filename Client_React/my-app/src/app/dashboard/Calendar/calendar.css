@@ -3,40 +3,19 @@
 @tailwind utilities;
 
 @layer components {
+  .fc .fc-toolbar-title {
+    @apply font-semibold;
+  }
   .fc {
-    @apply dark:bg-[#2d2d4a] dark:text-white px-2 py-2 rounded-md /* Dark background and text colors */
+    @apply dark:text-white;
   }
-
-  .fc-header-toolbar {
-    @apply dark:bg-[#2d2d4a] dark:text-white /* Darker background for toolbar */
+  .fc-event {
+    @apply border-none;
   }
-
-  .fc .fc-daygrid-day-number,
-  .fc .fc-timegrid-slot-label {
-    @apply dark:text-white px-2; /* Light text color for day numbers and slot labels */
+  .fc-event-title-container {
+    @apply bg-[#6C64EE] border-none rounded-md px-1;
   }
-
-  .fc .fc-daygrid-day.fc-day-today {
-    @apply dark:bg-[#4A4A6C]; /* Highlight today's date */
-  }
-
-  .fc .fc-button {
-    @apply dark:bg-gray-600 dark:text-gray-200; /* Darker background for buttons */
-  }
-
   .fc .fc-button-primary {
-    @apply dark:bg-gray-700 dark:text-gray-200; /* Darker background for primary buttons */
-  }
-
-  .fc .fc-button-primary:hover {
-    @apply dark:bg-gray-600; /* Lighter background on hover */
-  }
-
-  .fc .fc-button:disabled {
-    @apply dark:bg-gray-900 dark:text-gray-500; /* Disabled button background */
-  }
-
-  .fc .fc-event {
-    @apply dark:bg-gray-600 dark:text-gray-200; /* Darker background for events */
+    @apply bg-[#6C64EE];
   }
 }

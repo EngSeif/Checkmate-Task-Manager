@@ -1,13 +1,32 @@
 "use client";
 
+/*
+ *                            Register Component
+ *
+ *  This file Renders The Login Page
+ *
+ *  Components included:
+ *  - Login (Main Export Function)
+ *  - TabInfo
+ *  - Icon
+ *  - LogHeader
+ *  - LogForm
+ *  - 
+*/
+
 import React, { useState } from 'react';
 import styles from './login.module.css';
 import logo from '../images/logo.png'
 import { Helmet } from 'react-helmet';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
+/*
+ * Function Name :
+ *    TabInfo
+ * Description:
+ *    Has Tab Info
+ */
 
 function TabInfo() {
   return (
@@ -17,6 +36,13 @@ function TabInfo() {
     </Helmet>
   );
 }
+
+/*
+ * Function Name :
+ *    Icon
+ * Description:
+ *    Renders App Icon
+ */
 
 function Icon() {
   return (
@@ -29,49 +55,63 @@ function Icon() {
   );
 }
 
+/*
+ * Function Name :
+ *    RegHeader
+ * Description:
+ *    Returns Main Header of Login Page Header
+ */
+
 function LogHeader() {
   return (
     <>
       <h1 className={styles.welcome}>Welcome Back!</h1>
-      <p>Enter to your dashboard of tasks</p> 
+      <p>Enter to your dashboard of tasks</p>
     </>
   );
 }
 
-function LogForm({wrongData, setWrongData}) {
+/*
+ * Function Name :
+ *    RegForm
+ * Description:
+ *    Renders Form That user will log in his data
+ */
+
+function LogForm({ wrongData, setWrongData }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    const logUser = {email: email, password: password};
+    const logUser = { email: email, password: password };
     console.log(JSON.stringify(logUser))
     fetch('http://54.158.221.58/user/login', {
       method: 'POST',
-      headers: {'Content-Type': "application/json"},
+      headers: { 'Content-Type': "application/json" },
       body: JSON.stringify(logUser)
-    }).then((r)=> {
+    }).then((r) => {
       if (r.ok) {
         return r.json();
       }
       throw new Error("The Data You Entered is Not Correct");
     }).then((data) => {
       localStorage.setItem('token', JSON.stringify(data));
-      router.push('/dashboard'); 
-    }).catch((error)=> {
+      router.push('/dashboard');
+    }).catch((error) => {
       setWrongData(true);
     })
   }
   return (
-    <form onSubmit={(e)=>{handleSubmit(e)}}>
+    <form onSubmit={(e) => { handleSubmit(e) }}>
       <div className={styles.inputPlace}>
         <label className={styles.label}>
           Email
           <span className={styles.Req}>*</span>
         </label>
         <input
-          onChange={(e)=>{setEmail(e.target.value)}}
+          onChange={(e) => { setEmail(e.target.value) }}
           required
           type="email"
           name="email"
@@ -89,42 +129,32 @@ function LogForm({wrongData, setWrongData}) {
           required
           type="password"
           name="password"
-          onChange={(e)=>{setPassword(e.target.value)}}
+          onChange={(e) => { setPassword(e.target.value) }}
           placeholder="Enter password" />
       </div>
-    <div className={styles.moreInfo}>
-      <div>
-        <input type="checkbox" />
-        <label className={styles.label}>Remember me</label>
+      <div className={styles.moreInfo}>
+        <div>
+          <input type="checkbox" />
+          <label className={styles.label}>Remember me</label>
+        </div>
+        <a href="#">Forgot your password?</a>
       </div>
-      <a href="#">Forgot your password?</a>
-    </div>
-    { wrongData && 
-    (<div className={`flex justify-center py-4 ${wrongData == true}`}>
-      <p className='text-red-500'>The Data You Entered is Not Correct</p>
-    </div>)
-    }
-    <input type="submit" value="Log in" className={styles.submit}/>
-  </form>
+      {wrongData &&
+        (<div className={`flex justify-center py-4`}>
+          <p className='text-red-500'>The Data You Entered is Not Correct</p>
+        </div>)
+      }
+      <input type="submit" value="Log in" className={styles.submit} />
+    </form>
   );
 }
 
-function GoogleSignUp() {
-  return (
-    <>
-      <div className={styles.googleLog}>
-        <p className={styles.googleLogText}>
-          <span className={styles.googleLogSpan}>Or, Login with</span>
-        </p>
-        <hr />
-      </div>
-      <button className={styles.button}>
-        <FontAwesomeIcon icon={faGoogle} className={styles.Icon}/> 
-        Sign up with Google
-      </button>
-    </>
-  );
-}
+/*
+ * Function Name :
+ *    RegForm
+ * Description:
+ *    Container for all registeration page components
+ */
 
 function Login() {
   const [wrongData, setWrongData] = useState(false);
@@ -132,11 +162,10 @@ function Login() {
     <>
       <TabInfo />
       <div className={styles.container}>
-      <div className={styles.form}>
+        <div className={styles.form}>
           <Icon />
           <LogHeader />
-          <LogForm wrongData={wrongData} setWrongData={setWrongData}/>
-          <GoogleSignUp />
+          <LogForm wrongData={wrongData} setWrongData={setWrongData} />
           <p className={styles.register}>
             Don't have an account? <Link href="/register">Register here</Link>
           </p>

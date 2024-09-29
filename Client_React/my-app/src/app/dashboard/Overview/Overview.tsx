@@ -1,8 +1,31 @@
+/*
+ *                            DashBoard Component
+ *
+ *  This file Renders All Tasks and Filter Them in
+ *  addition to adding new tasks
+ *
+ *  Components included:
+ *  - ProjectSection (Main Export Function)
+ *  - ProjectHeadBar
+ *  - ProjectSection
+ *  - TaskDiv
+ *  - NewTaskDetails
+ *  - EditTaskDetails
+ *  - PriorityColumn
+ */
+
 import styles from './Overview.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEllipsisVertical, faCircleXmark, faPenToSquare, faTrash, faX, faSquareCheck, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 
+
+/*
+ * Function Name :
+ *    ProjectHeadBar
+ * Description:
+ *    Header for overview page 
+ */
 
 function ProjectHeadBar({setToDoAddNewPanel}) {
     return (
@@ -15,6 +38,13 @@ function ProjectHeadBar({setToDoAddNewPanel}) {
     </div>
     );
 }
+
+/*
+ * Function Name :
+ *    ProjectSection
+ * Description:
+ *    Render Priority Panels
+ */
 
 function ProjectSection({userToken}) {
 
@@ -95,6 +125,13 @@ function ProjectSection({userToken}) {
       </>
   );
 }
+
+/*
+ * Function Name :
+ *    TaskDiv
+ * Description:
+ *    Render Task Div in the priority panle 
+ */
 
 function TaskDiv({task, deleteTask, updateTask, userToken}) {
   const [menuBar, setMenuBar] = useState(false)
@@ -177,6 +214,14 @@ function TaskDiv({task, deleteTask, updateTask, userToken}) {
     )
 }
 
+/*
+ * Function Name :
+ *    NewTaskDetails
+ * Description:
+ *    Render New Panel to Enter A new Task
+ */
+
+
 function NewTaskDetails({ setToDoAddNewPanel, addNewTask, userToken }) {
     const [taskName, setTaskName ] = useState('');
     const [priority, setPriority ] = useState('');
@@ -248,6 +293,13 @@ function NewTaskDetails({ setToDoAddNewPanel, addNewTask, userToken }) {
       </div>
     );
 }
+
+/*
+ * Function Name :
+ *    NewTaskDetails
+ * Description:
+ *    Render New Panel to Edit A Task
+ */
 
 function EditTaskDetails({ setToDoEditPanel, task, setMenuBar, updateTask, userToken}) {
     const [taskName, setTaskName ] = useState(task.title);
@@ -323,6 +375,12 @@ function EditTaskDetails({ setToDoEditPanel, task, setMenuBar, updateTask, userT
     );
 }
 
+/*
+ * Function Name :
+ *    PriorityColumn
+ * Description:
+ *    Renders Shape of Priority Column
+ */
 
 function PriorityColumn({title, tasks, updateTask, deleteTask, userToken}) {
     return (

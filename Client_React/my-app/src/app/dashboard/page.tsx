@@ -1,5 +1,19 @@
 'use client';
 
+
+/*
+ *                            DashBoard Component
+ *
+ *  This file Renders The Dashboard Page
+ *
+ *  Components included:
+ *  - Dashboard (Main Export Function)
+ *  - TabInfo
+ *  - NavBar
+ *  - UpBar
+ */
+
+
 import { Helmet } from 'react-helmet';
 import styles from './dashboard.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +25,13 @@ import TaskList from './TaskList/tasklist';
 import Calendar from './Calendar/calendar';
 import Analytics from './Analytics/Analytics';
 
+/*
+ * Function Name :
+ *    TabInfo
+ * Description:
+ *    Has Tab Info
+ */
+
 function TabInfo() {
     return (
         <Helmet>
@@ -20,12 +41,19 @@ function TabInfo() {
     );
 }
 
+/*
+ * Function Name :
+ *    NavBar
+ * Description:
+ *    Renders the NavBar
+ */
+
 function NavBar({ darkMode, toggleDarkMode, setActivePanel, isNavVisible, setNavVisible}) {
     const closeNav = () => {
         setNavVisible(false);
     }
     return (
-        <div className={`${styles.NavContainer} ${isNavVisible ? 'block' : 'hidden'} lg:w-60 lg:flex lg:flex-col lg:justify-between lg:static lg:h-full lg:shadow-2xl`}>
+        <div className={`${styles.NavContainer} ${isNavVisible ? 'block' : 'hidden'} lg:w-60 lg:flex lg:flex-col lg:justify-between lg:static lg:h-full lg:shadow-2xl dark:bg-[#1A1A2E]`}>
             <div>
                 <div className={styles.logoContainer}>
                     <img src={logo.src} className='w-10'/>
@@ -73,7 +101,12 @@ function NavBar({ darkMode, toggleDarkMode, setActivePanel, isNavVisible, setNav
     );
 }
 
-
+/*
+ * Function Name :
+ *    UpBar
+ * Description:
+ *    Renders the UpBar of User Data
+ */
 
 function UpBar({userToken, toggleNav}) {
     const [userName, setUserName] = useState('');
@@ -113,8 +146,12 @@ function UpBar({userToken, toggleNav}) {
     );
 }
 
-
-
+/*
+ * Function Name :
+ *    Dashboard
+ * Description:
+ *    Container for all panels of the dashboard
+ */
 
 function Dashboard() {
     const [darkMode, setDarkmode] = useState(false);
@@ -146,7 +183,7 @@ function Dashboard() {
                         {userToken && <UpBar userToken={userToken} toggleNav={toggleNav}/>}
                         {activePanel === 'Overview' && <ProjectSection userToken={userToken} />}
                         {activePanel === 'Tasklist' && <TaskList userToken={userToken} />}
-                        {activePanel === 'Calendar' && <Calendar />}
+                        {activePanel === 'Calendar' && <Calendar userToken={userToken}/>}
                         {activePanel === 'Analytics' && <Analytics  userToken={userToken}/>}
                     </div>
                 </div>
@@ -154,8 +191,5 @@ function Dashboard() {
         </>
     );
 }
-
-
-
 
 export default Dashboard;

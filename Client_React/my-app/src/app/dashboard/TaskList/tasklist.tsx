@@ -1,7 +1,24 @@
+/*
+ *                            Tasklist Component
+ *
+ *  This file Renders All Tasks and Filter Them
+ *
+ *  Components included:
+ *  - TaskList (Main Export Function)
+ *  - TaskDiv
+ */
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faSquareCheck, faCircleDown, faTriangleExclamation, faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import styles from './tasklist.module.css';
+
+/*
+ * Function Name :
+ *    TaskDiv
+ * Description:
+ *    Contains the Shape of the task container
+ */
 
 function TaskDiv({task}) {
         return (
@@ -37,6 +54,13 @@ function TaskDiv({task}) {
             </div>
     )
 }
+
+/*
+ * Function Name :
+ *    TaskList
+ * Description:
+ *    Contains the all of the tasks
+ */
 
 function TaskList({userToken}) {
     const [tasks, setTasks] = useState([]);
@@ -100,7 +124,7 @@ function TaskList({userToken}) {
                 <option value="high">High Priority</option>
             </select>
         </div>
-        <div className='w-[92%] mx-auto grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2'>
+        <div className='w-[92%] mx-auto grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 dark:text-white'>
             {
                 tasks.length > 0 ? tasks.map(task => <TaskDiv task={task} />) : <p>No Tasks available</p>
             }

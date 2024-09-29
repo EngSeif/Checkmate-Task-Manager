@@ -2,44 +2,85 @@ import { Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, Tooltip, Legend, CategoryScale, LinearScale, ArcElement, BarElement, Title } from 'chart.js';
 import { useEffect, useState } from 'react';
 
+/*
+ *                            Analytics Component
+ *
+ *  This file Renders All Tasks and Filter Them in
+ *  addition to adding new tasks
+ *
+ *  Components included:
+ *  - Analytics (Main Export Function)
+ *  - getCurrentMonthName
+ *  - IsCurrentMonth
+ *  - GetDaysInMonth
+ */
 
-ChartJS.register(Tooltip, Legend, ArcElement, Title, BarElement, CategoryScale, LinearScale) 
+ChartJS.register(Tooltip, Legend, ArcElement, Title, BarElement, CategoryScale, LinearScale)
+
+/*
+ * Function Name :
+ *    getCurrentMonthName
+ * Description:
+ *    Get Name of The current month we are in
+ */
 
 function getCurrentMonthName() {
     const monthNames = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    
+
     const now = new Date();
     const currentMonthIndex = now.getMonth();
-    
+
     return monthNames[currentMonthIndex];
 }
+
+/*
+ * Function Name :
+ *    IsCurrentMonth
+ * Description:
+ *    Check if the date is in the current month
+ */
 
 function IsCurrentMonth(date) {
     const now = new Date();
 
-    return (now.getFullYear() === date.getFullYear() &&  now.getMonth() === date.getMonth())
+    return (now.getFullYear() === date.getFullYear() && now.getMonth() === date.getMonth())
 }
+
+/*
+ * Function Name :
+ *    GetDaysInMonth
+ * Description:
+ *    Get all number of days of a month
+ */
 
 function GetDaysInMonth() {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
     const daysInMonth = new Date(year, month, 0).getDate();
-    const daysArray = Array.from({length: daysInMonth}, (_, i) => i + 1);
+    const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
     return daysArray;
 }
 
-function Analytics({userToken}) {
+/*
+ * Function Name :
+ *    Analytics
+ * Description:
+ *    show all analytics graphs 
+ */
+
+function Analytics({ userToken }) {
+
     const [pieChartStatusData, setPieChartStatusData] = useState({
         labels: ["Done", "Undone"],
         datasets: [
             {
                 label: "Tasks Status",
-                data: [0, 0], 
-                backgroundColor: ["#ef4444", "#22c55e"]
+                data: [0, 0],
+                backgroundColor: ["#22c55e", "#ef4444"]
             }
         ]
     })
@@ -48,7 +89,7 @@ function Analytics({userToken}) {
         datasets: [
             {
                 label: "Tasks Status",
-                data: [0, 0], 
+                data: [0, 0],
                 backgroundColor: ["#ef4444", "#22c55e"]
             }
         ]
@@ -58,8 +99,8 @@ function Analytics({userToken}) {
         datasets: [
             {
                 label: "Month Data",
-                data: Array(GetDaysInMonth().length).fill(0), 
-                backgroundColor: ["#ef4444"]
+                data: Array(GetDaysInMonth().length).fill(0),
+                backgroundColor: ["#3b82f6"]
             }
         ]
     })
@@ -68,10 +109,10 @@ function Analytics({userToken}) {
         if (userToken) {
 
             fetch('http://54.158.221.58/tasks', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${userToken.token}`
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${userToken.token}`
                 }
             }).then((response) => {
                 console.log(response.status)
@@ -91,9 +132,9 @@ function Analytics({userToken}) {
                     datasets: [
                         {
                             label: "Tasks Status",
-                            data: [data.filter((task)=> task.checked == true).length, 
-                                data.filter((task)=> task.checked == false).length],
-                            backgroundColor: ["#ef4444", "#22c55e"]
+                            data: [data.filter((task) => task.checked == true).length,
+                            data.filter((task) => task.checked == false).length],
+                            backgroundColor: ["#22c55e", "#ef4444"]
                         }
                     ]
                 });
@@ -103,10 +144,10 @@ function Analytics({userToken}) {
                     datasets: [
                         {
                             label: "Tasks Priority",
-                            data: [data.filter((task)=> task.priority == 'low').length
-                                , data.filter((task)=> task.priority == 'medium').length
-                                , data.filter((task)=> task.priority == 'high').length],
-                            backgroundColor: ["#f59e0b", "#3b82f6", "#ef4444"]
+                            data: [data.filter((task) => task.priority == 'low').length
+                                , data.filter((task) => task.priority == 'medium').length
+                                , data.filter((task) => task.priority == 'high').length],
+                            backgroundColor: ["#3b82f6", "#f59e0b", "#ef4444"]
                         }
                     ]
                 });
@@ -116,8 +157,8 @@ function Analytics({userToken}) {
                     datasets: [
                         {
                             label: "Month Data",
-                            data: taskData, 
-                            backgroundColor: ["#ef4444", "#22c55e"]
+                            data: taskData,
+                            backgroundColor: ["#3b82f6"]
                         }
                     ]
                 })
@@ -156,7 +197,7 @@ function Analytics({userToken}) {
             y: {
                 ticks: {
                     stepSize: 1,
-                    callback: function(value) {
+                    callback: function (value) {
                         return Number.isInteger(value) ? value : ''; // Ensure that only integers are displayed
                     }
                 }
@@ -168,10 +209,10 @@ function Analytics({userToken}) {
         <div className='w-[92%] mx-auto flex flex-col h-[100vh] gap-2'>
             <div className='flex flex-wrap justify-center gap-4'>
                 <div>
-                    <Pie options={optionsDoneAndUndone} data={pieChartStatusData}/>
+                    <Pie options={optionsDoneAndUndone} data={pieChartStatusData} />
                 </div>
                 <div>
-                    <Pie options={optionsPriority} data={pieChartPriorityData}/>
+                    <Pie options={optionsPriority} data={pieChartPriorityData} />
                 </div>
             </div>
             <div className='w-full h-[50vh] p-4'>

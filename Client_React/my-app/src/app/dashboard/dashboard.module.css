@@ -1,6 +1,6 @@
 .NavContainer {
   @apply bg-white;
-  @apply absolute top-20 left-0 w-full z-50 h-fit;
+  @apply absolute top-20 left-0 w-full z-10 h-fit;
 }
 
 .navIcon {
