@@ -12,14 +12,11 @@
  *  - Footer
  */
 
-import "@dotlottie/player-component";
+import "@dotlottie/player-component"; // Ensure this is safe for SSR or dynamically import it if needed
 import logo from "../images/logo.png";
 import styles from "./home.module.css";
 import Link from "next/link";
-import AboutUS from "./AboutUs";
-import Features from "./Features";
-import MainLand from "./Land";
-
+import dynamic from 'next/dynamic'; // Import dynamic for SSR control
 
 /*
  * Function Name :
@@ -81,13 +78,17 @@ function Footer() {
  *    Container For All HomePage Components
  */
 
+// Dynamically import components that may use window or require client-side rendering
+const DynamicMainLand = dynamic(() => import('./Land'), { ssr: false });
+const DynamicFeatures = dynamic(() => import('./Features'), { ssr: false });
+const DynamicAboutUS = dynamic(() => import('./AboutUs'), { ssr: false });
+
 function Home() {
   return (
     <>
-
-      <MainLand />
-      <Features />
-      <AboutUS />
+      <DynamicMainLand />
+      <DynamicFeatures />
+      <DynamicAboutUS />
       <GetStarted />
       <Footer />
     </>

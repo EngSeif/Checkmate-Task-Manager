@@ -74,69 +74,80 @@ function LogForm({ wrongData, setWrongData }) {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const logUser = { email: email, password: password };
-    console.log(JSON.stringify(logUser))
-    fetch('http://54.158.221.58/user/login', {
-      method: 'POST',
-      headers: { 'Content-Type': "application/json" },
-      body: JSON.stringify(logUser)
-    }).then((r) => {
-      if (r.ok) {
-        return r.json();
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const logUser = { email, password };
+      console.log(JSON.stringify(logUser));
+      
+      try {
+          const response = await fetch('http://54.158.221.58/user/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(logUser),
+          });
+
+          if (!response.ok) {
+              throw new Error('The Data You Entered is Not Correct');
+          }
+
+          const data = await response.json();
+          
+          // Store token in localStorage
+          if (typeof window !== 'undefined') {
+              localStorage.setItem('token', JSON.stringify(data));
+          }
+
+          router.push('/dashboard');
+      } catch (error) {
+          console.error(error);
+          setWrongData(true);
       }
-      throw new Error("The Data You Entered is Not Correct");
-    }).then((data) => {
-      localStorage.setItem('token', JSON.stringify(data));
-      router.push('/dashboard');
-    }).catch(() => {
-      setWrongData(true);
-    })
-  }
+  };
+
   return (
-    <form onSubmit={(e) => { handleSubmit(e) }}>
-      <div className={styles.inputPlace}>
-        <label className={styles.label}>
-          Email
-          <span className={styles.Req}>*</span>
-        </label>
-        <input
-          onChange={(e) => { setEmail(e.target.value) }}
-          required
-          type="email"
-          name="email"
-          placeholder="Enter your mail address"
-          className={styles.inputTag}
-        />
-      </div>
-      <div className={styles.inputPlace}>
-        <label className={styles.label}>
-          Password
-          <span className={styles.Req}>*</span>
-        </label>
-        <input
-          className={styles.inputTag}
-          required
-          type="password"
-          name="password"
-          onChange={(e) => { setPassword(e.target.value) }}
-          placeholder="Enter password" />
-      </div>
-      <div className={styles.moreInfo}>
-        <div>
-          <input type="checkbox" />
-          <label className={styles.label}>Remember me</label>
-        </div>
-        <a href="#">Forgot your password?</a>
-      </div>
-      {wrongData &&
-        (<div className={`flex justify-center py-4`}>
-          <p className='text-red-500'>The Data You Entered is Not Correct</p>
-        </div>)
-      }
-      <input type="submit" value="Log in" className={styles.submit} />
-    </form>
+      <form onSubmit={handleSubmit}>
+          <div className={styles.inputPlace}>
+              <label className={styles.label}>
+                  Email
+                  <span className={styles.Req}>*</span>
+              </label>
+              <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  type="email"
+                  name="email"
+                  placeholder="Enter your mail address"
+                  className={styles.inputTag}
+              />
+          </div>
+          <div className={styles.inputPlace}>
+              <label className={styles.label}>
+                  Password
+                  <span className={styles.Req}>*</span>
+              </label>
+              <input
+                  className={styles.inputTag}
+                  required
+                  type="password"
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+              />
+          </div>
+          <div className={styles.moreInfo}>
+              <div>
+                  <input type="checkbox" />
+                  <label className={styles.label}>Remember me</label>
+              </div>
+              <a href="#">Forgot your password?</a>
+          </div>
+          {wrongData && (
+              <div className={`flex justify-center py-4`}>
+                  <p className='text-red-500'>The Data You Entered is Not Correct</p>
+              </div>
+          )}
+          <input type="submit" value="Log in" className={styles.submit} />
+      </form>
   );
 }
 
