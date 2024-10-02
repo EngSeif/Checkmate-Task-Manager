@@ -1,0 +1,97 @@
+
+@layer navBar {
+
+    .navContainer {
+        @apply flex justify-between items-center w-[%92] mx-auto;
+    }
+
+    .logoContainer {
+        @apply flex;
+    }
+
+    .logoTextContainer {
+        @apply flex justify-center items-center;
+    }
+
+    .logoText {
+        @apply sm:text-xl font-bold text-[#7569FF];
+    }
+
+    .navLinksContainer {
+        @apply  md:static bg-white
+        absolute min-h-[30vh]
+        md:min-h-fit left-0
+        top-[-100%] md:top-auto md:w-auto
+        w-full flex md:items-center
+        px-5 transition-all duration-300 ease-in-out;
+    }
+
+    .ulContainer {
+        @apply flex md:flex-row flex-col items-center md:gap-[4vw] gap-8;
+    }
+
+    .liContainer {
+        @apply hover:text-[#6C64EE] font-normal;
+    }
+
+    .logSignConatiner {
+        @apply flex items-center gap-2 mr-5 w-fit justify-end;
+    }
+
+    .logSignButton {
+        @apply  flex items-center bg-[#6C64EE] cursor-pointer p-1 rounded-md font-medium gap-2;
+        @apply hover:bg-white hover:text-[#6C64EE];
+        @apply  duration-75;
+    }
+
+    .menuBar {
+        @apply w-6 cursor-pointer md:hidden;
+    }
+}
+
+@layer MainVideo {
+    .animation {
+        height: 80%;
+        width: 100;
+        overflow: hidden;
+    }
+}
+
+@layer FeaturesPanel {
+    .featurePurple {
+        @apply bg-[#6C64EE] flex justify-center items-center md:flex-row flex-col md:py-16 py-10;
+    }
+    .featureWhite {
+        @apply bg-white flex justify-center items-center md:flex-row flex-col-reverse md:py-16 py-10;
+    }
+}
+
+@layer About {
+    .cardProg {
+        @apply lg:w-1/3 w-1/2 h-full flex flex-col gap-3 items-center bg-white justify-center px-2 py-8 rounded-md;
+    }
+}
+
+.bgImg {
+    @apply lg:w-1/2 w-full h-[60vh];
+    background-image: url('../images/simple_2.jpeg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    width:
+}
+
+.getStarted {
+    @apply h-auto w-full bg-white pb-20 pt-20;
+}
+
+.bgContainer {
+    background-image: url('../images/startNow.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    width: full;
+    height: 70vh;
+    @apply w-[92%] mx-auto flex items-center justify-center;
+}

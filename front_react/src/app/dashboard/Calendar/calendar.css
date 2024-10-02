@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .fc .fc-toolbar-title {
+    @apply font-semibold;
+  }
+  .fc {
+    @apply dark:text-white;
+  }
+  .fc-event {
+    @apply border-none;
+  }
+  .fc-event-title-container {
+    @apply bg-[#6C64EE] border-none rounded-md px-1;
+  }
+  .fc .fc-button-primary {
+    @apply bg-[#6C64EE];
+  }
+}

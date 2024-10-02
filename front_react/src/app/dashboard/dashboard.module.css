@@ -1,0 +1,25 @@
+.NavContainer {
+  @apply bg-white;
+  @apply absolute top-20 left-0 w-full z-10 h-fit;
+}
+
+.navIcon {
+  @apply text-xl transition-none;
+}
+
+.searchBar {
+  @apply border-solid border-gray-400 border-2 rounded-lg px-2 w-[100%];
+}
+
+.logoContainer {
+  @apply flex items-center px-2 py-2 mt-3;
+}
+
+.iconsContainer {
+  @apply flex items-center px-2 py-2 gap-2 my-3 rounded-md transition-none;
+  color: #6c64ee;
+}
+
+.iconsContainer:hover {
+  @apply text-white bg-[#6c64ee];
+}
