@@ -15,7 +15,8 @@ import styles from "./home.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
-import logo from "../images/logo.png";
+import logo from "./images/logo.png";
+import ReactPlayer from "react-player";
 
 /*
 * Function Name :
@@ -63,13 +64,13 @@ function NavBar() {
 function MainVideo() {
     return (
         <div className={styles.animation}>
-            {/* <ReactPlayer
+            <ReactPlayer
                 url='/videos/main_video.mp4'
                 playing={true}
                 muted={true}
                 width='100%'
                 height='80%'
-            /> */}
+            />
         </div>
     );
 }

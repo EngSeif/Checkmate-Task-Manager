@@ -17,8 +17,8 @@
 import styles from "./home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import seif from "../images/Seif_Mohmaed.jpg";
-import ahmed from "../images/Ahmed_Ali.jpeg";
+import seif from "./images/Seif_Mohmaed.jpg";
+import ahmed from "./images/Ahmed_Ali.jpeg";
 
 import Link from "next/link";
 

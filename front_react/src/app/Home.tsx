@@ -13,7 +13,7 @@
  */
 
 import "@dotlottie/player-component"; // Ensure this is safe for SSR or dynamically import it if needed
-import logo from "../images/logo.png";
+import logo from "./images/logo.png";
 import styles from "./home.module.css";
 import Link from "next/link";
 import dynamic from 'next/dynamic'; // Import dynamic for SSR control

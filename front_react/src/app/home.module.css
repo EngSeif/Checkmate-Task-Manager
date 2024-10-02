@@ -74,7 +74,7 @@
 
 .bgImg {
     @apply lg:w-1/2 w-full h-[60vh];
-    background-image: url('../images/simple_2.jpeg');
+    background-image: url('./images/simple_2.jpeg');
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
@@ -86,7 +86,7 @@
 }
 
 .bgContainer {
-    background-image: url('../images/startNow.jpg');
+    background-image: url('./images/startNow.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
