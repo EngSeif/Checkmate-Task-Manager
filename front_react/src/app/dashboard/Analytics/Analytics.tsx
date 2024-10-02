@@ -43,7 +43,7 @@ function getCurrentMonthName() {
  *    Check if the date is in the current month
  */
 
-function IsCurrentMonth(date) {
+function IsCurrentMonth({ date }) {
     const now = new Date();
 
     return (now.getFullYear() === date.getFullYear() && now.getMonth() === date.getMonth())
@@ -121,7 +121,7 @@ function Analytics({ userToken }) {
                 const taskData = Array(GetDaysInMonth().length).fill(0);
                 data.forEach(task => {
                     const taskDate = new Date(task.time_added)
-                    if (IsCurrentMonth(taskDate)) {
+                    if (IsCurrentMonth({ date: taskDate })) {
                         const taskDay = taskDate.getDate();
                         taskData[taskDay - 1] += 1;
                     }
