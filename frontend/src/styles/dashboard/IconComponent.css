@@ -1,0 +1,37 @@
+.IconComponentContainer {
+    display: flex;
+    gap: 1rem;
+    width: 90%;
+    padding: 0.6rem 0.5rem 0.6rem 1rem;
+    border-radius: 12px;
+    color: #A2A8AA;
+    cursor: pointer;
+    transition: 
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.IconComponentContainer.active {
+    background-color: var(--main);
+    color: #EBEFF1;
+}
+
+.IconComponentContainer:hover {
+    background-color: var(--main);
+    color: #EBEFF1;
+}
+
+.IconComponentContainer span {
+    color: black;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.IconComponentContainer:hover span {
+    color: #EBEFF1;
+}
+
+.IconComponentContainer.active span {
+    color: #EBEFF1;
+}
+

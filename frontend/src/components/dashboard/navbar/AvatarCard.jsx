@@ -9,8 +9,8 @@ function AvatarCard() {
         <div className="avatar-card">
             <img src="./images/user.jpg" className="w-16 rounded-full" />
             <div>
-                <p>Seif Mohamed</p>
-                <p>A Premimum User</p>
+                <p className="font-semibold">Seif Mohamed</p>
+                <p className="text-xs">A Premimum User</p>
             </div>
         </div>
     )

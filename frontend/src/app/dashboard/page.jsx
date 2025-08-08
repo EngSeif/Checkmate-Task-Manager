@@ -1,7 +1,7 @@
 import React from "react";
 import '@/styles/dashboard/navBarDashboard.css'
 
-import NavBar from "@/components/dashboard/navbar.jsx";
+import NavBar from "@/components/dashboard/navbar/NavBar.jsx";
 
 
 function Dashboard() {

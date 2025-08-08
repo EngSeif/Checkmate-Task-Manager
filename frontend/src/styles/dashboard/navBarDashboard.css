@@ -9,12 +9,13 @@
 
 .navBarContainer {
   background-color: #F5F6F8;
-  width: 18%;
+  width: 260px;
   padding: 0.5rem;
 }
 
 .avatar-card {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    padding: 0.5rem 0rem;
+    gap: 0.5rem;
 }
