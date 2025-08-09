@@ -1,0 +1,44 @@
+.HeadderBarContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  justify-content: space-between;
+}
+
+.UtilityIconsContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.UtilityIconsStyle {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding: 0.5rem;
+  box-sizing: content-box;
+  color: #a2a8aa;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.UtilityIconsStyle::after {
+  content: "";
+  position: absolute;
+  background-color: #ff4d4f;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  top: calc(25% - 4px);
+  right: calc(25% - 2px);
+}
+
+.UtilityIconsStyle:hover {
+  background-color: var(--main);
+  color: #ebeff1;
+}
+
+.HeadderBarContainer h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
